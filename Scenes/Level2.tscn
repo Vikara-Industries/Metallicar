@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbwfb1xsm7yp3"]
+
+[ext_resource type="Script" path="res://Scripts/Test.gd" id="1_3jifo"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_tu4rh"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(56.25, 50.25)
+scale = Vector2(113.5, 101.5)
+mesh = SubResource("PrismMesh_tu4rh")
+script = ExtResource("1_3jifo")
