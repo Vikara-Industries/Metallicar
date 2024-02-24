@@ -20,4 +20,7 @@ func _on_restart_button_button_up():
 	Director.restartScene()
 
 func _on_quit_button_button_up():
-	pass # Replace with function body.
+	if Director.CurrentScene == Director.LEVEL_1:
+		Director.changeScene(Director.LEVEL_2)
+	else:
+		Director.changeScene(Director.LEVEL_1)

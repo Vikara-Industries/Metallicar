@@ -1,14 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cplffus7y6o1y"]
+[gd_scene load_steps=2 format=3 uid="uid://cplffus7y6o1y"]
 
-[ext_resource type="Script" path="res://Scripts/Test.gd" id="1_i6u00"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_1xgof"]
+[ext_resource type="Script" path="res://Scripts/LevelMaster.gd" id="2_q66g1"]
 
 [node name="Level1" type="Node2D"]
 process_mode = 1
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(34.25, 36.25)
-scale = Vector2(69.5, 73.5)
-mesh = SubResource("QuadMesh_1xgof")
-script = ExtResource("1_i6u00")
+[node name="LevelMaster" type="Node" parent="."]
+script = ExtResource("2_q66g1")
