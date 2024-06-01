@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdg7w4hmufq4d"]
+
+[ext_resource type="Script" path="res://Scripts/LevelUpMenu.gd" id="1_3n47m"]
+
+[node name="LvlUpMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchor_left = 0.197
+anchor_top = 0.118
+anchor_right = 0.275
+anchor_bottom = 0.131
+offset_right = 600.0
+offset_bottom = 500.0
+script = ExtResource("1_3n47m")
+
+[node name="Option 1" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Level Up"
+
+[node name="Option 2" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level Up"
+
+[node name="Option 3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Level Up"
+
+[connection signal="pressed" from="Option 1" to="." method="_on_option1"]
+[connection signal="pressed" from="Option 2" to="." method="_on_option2"]
+[connection signal="pressed" from="Option 3" to="." method="_on_option3"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cplffus7y6o1y"]
+
+[ext_resource type="Script" path="res://Scripts/LevelMaster.gd" id="2_q66g1"]
+[ext_resource type="PackedScene" uid="uid://cmevk0e00c287" path="res://Scenes/Prefabs/Player.tscn" id="2_ukumk"]
+[ext_resource type="PackedScene" uid="uid://cor3gtdgmnjjd" path="res://tmap.tscn" id="4_7j2lv"]
+[ext_resource type="PackedScene" uid="uid://clopi7g08pbrf" path="res://Scenes/Prefabs/EnemySpawner.tscn" id="4_ivy41"]
+
+[node name="Level1" type="Node2D"]
+process_mode = 1
+
+[node name="LevelMaster" type="Node" parent="."]
+script = ExtResource("2_q66g1")
+
+[node name="waveTimer" type="Timer" parent="LevelMaster"]
+wait_time = 2.0
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("2_ukumk")]
+position = Vector2(-1297, 59)
+engine_power = 500
+friction = -10
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[node name="spawners" type="Node2D" parent="Player"]
+
+[node name="EnemySpawner" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(-396, -240)
+
+[node name="EnemySpawner2" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(390, -248)
+
+[node name="EnemySpawner3" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(-402, 264)
+
+[node name="EnemySpawner4" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(424, 278)
+
+[node name="TileMap2" parent="." instance=ExtResource("4_7j2lv")]
+z_index = -5
+
+[connection signal="timeout" from="LevelMaster/waveTimer" to="LevelMaster" method="_on_wave_timer_timeout"]

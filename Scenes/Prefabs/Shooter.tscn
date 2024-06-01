@@ -1,0 +1,202 @@
+[gd_scene load_steps=9 format=3 uid="uid://l188ht2es1gk"]
+
+[ext_resource type="Script" path="res://Scripts/Shooter.gd" id="1_tge63"]
+[ext_resource type="Texture2D" uid="uid://tbd00r63vys7" path="res://Art/Shooter1.png" id="2_qnmxg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ojyp"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_6njl6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:attackReady")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_iyxcw"]
+resource_name = "attack"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:attackReady")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvg24"]
+_data = {
+"RESET": SubResource("Animation_6njl6"),
+"attack": SubResource("Animation_iyxcw")
+}
+
+[sub_resource type="Curve" id="Curve_nhvlg"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -200), 0.0, 0.0, 0, 0, Vector2(0.179348, 200), 0.0, 0.0, 0, 0, Vector2(1, -200), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_fxoh1"]
+_data = [Vector2(0, 0.417582), 0.0, 0.0, 0, 0, Vector2(0.195652, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.384615), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Shooter" type="CharacterBody2D" groups=["Enemy"]]
+motion_mode = 1
+safe_margin = 53.28
+script = ExtResource("1_tge63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1ojyp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -1.5708
+texture = ExtResource("2_qnmxg")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kvg24")
+}
+next/attack = &"RESET"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+offset_left = -10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 16.0
+rotation = -1.57079
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="HPDisplayTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+linear_accel_curve = SubResource("Curve_nhvlg")
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_fxoh1")
+color = Color(1, 0, 0, 1)
+
+[node name="ReactTimer" type="Timer" parent="."]
+wait_time = 0.585
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

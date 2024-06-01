@@ -50,19 +50,42 @@ offset_right = -0.137085
 offset_bottom = 148.481
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.022
-anchor_top = 0.013
-anchor_right = 0.977
-anchor_bottom = 0.227
-offset_left = -4.782
-offset_top = 293.239
-offset_right = -0.137085
-offset_bottom = 294.481
-text = "Quit"
+[node name="MusicSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 317.0
+offset_right = 1051.0
+offset_bottom = 363.0
+min_value = -30.0
+max_value = 0.0
+
+[node name="SfxSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 394.0
+offset_right = 1052.0
+offset_bottom = 440.0
+min_value = -30.0
+max_value = 0.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 326.0
+offset_right = 118.0
+offset_bottom = 363.0
+text = "music"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 404.0
+offset_right = 130.0
+offset_bottom = 443.0
+text = "sfx
+"
 
 [connection signal="button_up" from="Panel/PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="Panel/RestartButton" to="." method="_on_restart_button_button_up"]
-[connection signal="button_up" from="Panel/QuitButton" to="." method="_on_quit_button_button_up"]
+[connection signal="value_changed" from="Panel/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Panel/SfxSlider" to="." method="_on_sfx_slider_value_changed"]

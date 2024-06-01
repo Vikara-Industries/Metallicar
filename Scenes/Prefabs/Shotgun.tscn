@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://baanu6xhpqah"]
+
+[ext_resource type="Script" path="res://Scripts/Shotgun.gd" id="1_kfuum"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5aw25"]
+
+[sub_resource type="Curve" id="Curve_ywqwl"]
+_data = [Vector2(0, 0.868132), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_kfuum")
+weapontype = "shotgun"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(3, 8)
+mesh = SubResource("QuadMesh_5aw25")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -146)
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(26, -134)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+target_position = Vector2(-36, -126)
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+target_position = Vector2(-24, -132)
+
+[node name="RayCast2D5" type="RayCast2D" parent="."]
+target_position = Vector2(19, -135)
+
+[node name="RayCast2D6" type="RayCast2D" parent="."]
+target_position = Vector2(10, -139)
+
+[node name="RayCast2D7" type="RayCast2D" parent="."]
+target_position = Vector2(-11, -140)
+
+[node name="RayCast2D8" type="RayCast2D" parent="."]
+target_position = Vector2(-18, -139)
+
+[node name="RayCast2D9" type="RayCast2D" parent="."]
+target_position = Vector2(-32, -131)
+
+[node name="RayCast2D10" type="RayCast2D" parent="."]
+target_position = Vector2(32, -128)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+emission_shape = 5
+emission_points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, -1)
+spread = 33.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 899.45
+initial_velocity_max = 1000.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_ywqwl")
