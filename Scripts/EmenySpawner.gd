@@ -3,6 +3,7 @@ class_name EnemySpawner
 
 const shooter1 = preload("res://Scenes/Prefabs/Shooter.tscn")
 const walker1 =preload("res://Scenes/Prefabs/Walker.tscn")
+const bomber1 = preload("res://Scenes/Prefabs/Bomber.tscn")
 func canSpawn():
 	for area in get_overlapping_areas():
 		if area is PlayArea:
@@ -19,6 +20,7 @@ func spawnWave(wave: Dictionary):
 	if wave.has("Walker1"):
 		for walker in wave["Walker1"]:
 			var newEnemy = walker1.instantiate()
+			newEnemy.get_node("./Sprite2D").set_texture(load("res://Art/Walker1.png"))
 			TargetParent.add_child(newEnemy)
 			newEnemy.global_position = self.global_position - Vector2(iter,10)
 			iter += 1
@@ -29,7 +31,6 @@ func spawnWave(wave: Dictionary):
 			newEnemy.speed *= 1.5
 			newEnemy.xpDrop = 3
 			newEnemy.get_node("./Sprite2D").set_texture(load("res://Art/Walker2.png")) 
-			#i am very sorry for the following line
 			TargetParent.add_child(newEnemy)
 			newEnemy.global_position = self.global_position - Vector2(iter*5,10)
 			iter += 1
@@ -67,6 +68,12 @@ func spawnWave(wave: Dictionary):
 			newEnemy.speed *= 2
 			newEnemy.xpDrop = 100
 			newEnemy.get_node("./Sprite2D").set_texture(load("res://Art/Shooter3.png"))
+			TargetParent.add_child(newEnemy)
+			newEnemy.global_position = self.global_position - Vector2(iter,10)
+			iter += 1
+	if wave.has("Bomber1"):
+		for shooter in wave["Bomber1"]:
+			var newEnemy = bomber1.instantiate()
 			TargetParent.add_child(newEnemy)
 			newEnemy.global_position = self.global_position - Vector2(iter,10)
 			iter += 1

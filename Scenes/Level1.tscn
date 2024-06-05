@@ -12,23 +12,70 @@
 process_mode = 1
 
 [node name="HealthPack" parent="." instance=ExtResource("1_svl4m")]
-position = Vector2(-1917.61, -1779.54)
+position = Vector2(-439, -201)
+
+[node name="HealthPack18" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-5264, -3252)
+
+[node name="HealthPack19" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-1270, -2051)
 
 [node name="HealthPack2" parent="." instance=ExtResource("1_svl4m")]
-position = Vector2(-1917.61, -1684.54)
+position = Vector2(-2841, -1743)
 
 [node name="HealthPack3" parent="." instance=ExtResource("1_svl4m")]
 position = Vector2(-1917.61, -1878.54)
+
+[node name="HealthPack4" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4920.08, -358.288)
+
+[node name="HealthPack5" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-2557, -177)
+
+[node name="HealthPack6" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4369, -1672)
+
+[node name="HealthPack7" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4407, -1362)
+
+[node name="HealthPack8" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4377, -1551)
+
+[node name="HealthPack9" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-2210, -3099)
+
+[node name="HealthPack10" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-2323, -3061)
+
+[node name="HealthPack11" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-2081, -3038)
+
+[node name="HealthPack12" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4404, -2782)
+
+[node name="HealthPack13" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-3667, -2248)
+
+[node name="HealthPack14" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-2973, -2456)
+
+[node name="HealthPack15" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-3662, -1030)
+
+[node name="HealthPack16" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-4388, -2461)
+
+[node name="HealthPack17" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-853, -3059)
 
 [node name="LevelMaster" type="Node" parent="." groups=["LevelMaster"]]
 script = ExtResource("2_q66g1")
 
 [node name="waveTimer" type="Timer" parent="LevelMaster"]
-wait_time = 30.0
 autostart = true
 
 [node name="levelTimer" type="Timer" parent="LevelMaster"]
-wait_time = 1800.0
+wait_time = 600.0
 autostart = true
 
 [node name="LevelUpMenuLayer" type="CanvasLayer" parent="LevelMaster"]

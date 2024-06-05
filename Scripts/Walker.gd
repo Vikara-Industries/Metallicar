@@ -19,33 +19,33 @@ var player :Player
 var speed = 50
 var crashVel : Vector2
 @export var attackReady = false
-@export var damage = 2
+@export var damage: float = 0.6
 @export var friction = 65
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if player == null:
-		player = get_tree().get_first_node_in_group("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	progress_bar.max_value = hp
 	
 var playerInHurtbox = false
 var distanceToPlayer
-var attackRange = 65
+var attackRange = 35
 var teleportThresholdDistance = 1000
 var col
 
 func _physics_process(delta):
+	
 	if not dead:
 		distanceToPlayer = (player.global_position - self.global_position).length()
 		look_at(player.position)
 		if distanceToPlayer > teleportThresholdDistance:
 			self.global_position = player.get_node("./spawners").get_children()[randi_range(0,3)].global_position
 		if crashVel.length() < 60 and attack_timer.is_stopped():
-			velocity = (player.global_position - self.global_position).normalized() * speed
+			velocity = (player.global_position - global_position).normalized() * speed
 		else:
 			velocity = crashVel
 			crashVel /= friction *delta
 		move_and_slide()
-
+		
 func takeDamage(num):
 	if not dead:
 		hp -= num

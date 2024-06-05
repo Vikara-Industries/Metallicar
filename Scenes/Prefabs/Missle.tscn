@@ -1,30 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://cexmpu1qburae"]
+[gd_scene load_steps=11 format=3 uid="uid://cexmpu1qburae"]
 
 [ext_resource type="Script" path="res://Scripts/Missle.gd" id="1_d2o81"]
+[ext_resource type="Texture2D" uid="uid://bhc73s68v3rmm" path="res://Art/Missle.png" id="2_x7o7y"]
+
+[sub_resource type="Curve" id="Curve_mt10j"]
+min_value = 1.0
+max_value = 5.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.594444, 2.0989), 3.07692, 3.07692, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_0jfka"]
+offsets = PackedFloat32Array(0, 0.980263)
+colors = PackedColorArray(1, 1, 1, 1, 0.0941176, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajoq5"]
 radius = 46.0435
 
-[sub_resource type="SphereMesh" id="SphereMesh_j2y6l"]
-radius = 50.0
-height = 50.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbe24"]
+atlas = ExtResource("2_x7o7y")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1htn"]
+atlas = ExtResource("2_x7o7y")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28jok"]
+atlas = ExtResource("2_x7o7y")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_065wc"]
+atlas = ExtResource("2_x7o7y")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rctdo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbe24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1htn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28jok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_065wc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Missle" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_d2o81")
 damage = 7
 weapontype = "missle"
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_mt10j")
+color_ramp = SubResource("Gradient_0jfka")
 
 [node name="blastArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blastArea"]
 shape = SubResource("CircleShape2D_ajoq5")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="blastArea"]
-modulate = Color(1, 0, 1, 0.372549)
-position = Vector2(-2, 2)
-scale = Vector2(0.753578, 1.56)
-mesh = SubResource("SphereMesh_j2y6l")
+[node name="aim" type="AnimatedSprite2D" parent="blastArea"]
+sprite_frames = SubResource("SpriteFrames_rctdo")
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="AnimTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="AnimTimer" to="." method="_on_anim_timer_timeout"]

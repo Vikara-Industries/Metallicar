@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bukm6aa4conv0"]
+[gd_scene load_steps=3 format=3 uid="uid://bukm6aa4conv0"]
 
 [ext_resource type="PackedScene" uid="uid://bhu71ls6cjqlt" path="res://Scenes/PauseMenu.tscn" id="1_ug1u8"]
-[ext_resource type="AudioStream" uid="uid://d270yu2oc6isf" path="res://audio/vehicular_godslaughter.mp3" id="2_bevu7"]
 [ext_resource type="Script" path="res://Scripts/audiosys.gd" id="3_0dnnw"]
 
 [node name="Stage" type="Node"]
@@ -16,8 +15,6 @@ visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("2_bevu7")
-autoplay = true
 bus = &"Music"
 script = ExtResource("3_0dnnw")
 

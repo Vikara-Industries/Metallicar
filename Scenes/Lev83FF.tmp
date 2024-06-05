@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://cplffus7y6o1y"]
+
+[ext_resource type="PackedScene" uid="uid://dvos6c0i03dt3" path="res://Scenes/Prefabs/healthPack.tscn" id="1_svl4m"]
+[ext_resource type="Script" path="res://Scripts/LevelMaster.gd" id="2_q66g1"]
+[ext_resource type="PackedScene" uid="uid://cmevk0e00c287" path="res://Scenes/Prefabs/Player.tscn" id="2_ukumk"]
+[ext_resource type="PackedScene" uid="uid://bdg7w4hmufq4d" path="res://Scenes/LvlUpMenu.tscn" id="3_7s6mg"]
+[ext_resource type="PackedScene" uid="uid://cor3gtdgmnjjd" path="res://tmap.tscn" id="4_7j2lv"]
+[ext_resource type="PackedScene" uid="uid://clopi7g08pbrf" path="res://Scenes/Prefabs/EnemySpawner.tscn" id="4_ivy41"]
+[ext_resource type="Script" path="res://Scenes/lvlTmr.gd" id="5_1gdh0"]
+[ext_resource type="PackedScene" uid="uid://b5odb8lr5oaw0" path="res://Scenes/Prefabs/Bomber.tscn" id="8_pryge"]
+
+[node name="Level1" type="Node2D"]
+process_mode = 1
+
+[node name="HealthPack" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-1917.61, -1779.54)
+
+[node name="HealthPack2" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-1917.61, -1684.54)
+
+[node name="HealthPack3" parent="." instance=ExtResource("1_svl4m")]
+position = Vector2(-1917.61, -1878.54)
+
+[node name="LevelMaster" type="Node" parent="." groups=["LevelMaster"]]
+script = ExtResource("2_q66g1")
+
+[node name="waveTimer" type="Timer" parent="LevelMaster"]
+wait_time = 30.0
+autostart = true
+
+[node name="levelTimer" type="Timer" parent="LevelMaster"]
+wait_time = 1800.0
+autostart = true
+
+[node name="LevelUpMenuLayer" type="CanvasLayer" parent="LevelMaster"]
+process_mode = 3
+
+[node name="LvlUpMenu" parent="LevelMaster/LevelUpMenuLayer" instance=ExtResource("3_7s6mg")]
+
+[node name="Player" parent="." instance=ExtResource("2_ukumk")]
+position = Vector2(-2388, -1798)
+engine_power = 500
+friction = -10
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
+zoom = Vector2(2, 2)
+
+[node name="spawners" type="Node2D" parent="Player"]
+visible = false
+
+[node name="EnemySpawner" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(-396, -240)
+
+[node name="EnemySpawner2" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(390, -248)
+
+[node name="EnemySpawner3" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(-402, 264)
+
+[node name="EnemySpawner4" parent="Player/spawners" instance=ExtResource("4_ivy41")]
+position = Vector2(424, 278)
+
+[node name="TileMap2" parent="." instance=ExtResource("4_7j2lv")]
+z_index = -5
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+rotation = -0.0111277
+text = "30:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("5_1gdh0")
+
+[node name="Bomber" parent="." instance=ExtResource("8_pryge")]
+position = Vector2(-2640, -1696)
+
+[connection signal="timeout" from="LevelMaster/waveTimer" to="LevelMaster" method="_on_wave_timer_timeout"]

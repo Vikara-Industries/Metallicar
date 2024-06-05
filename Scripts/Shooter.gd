@@ -18,7 +18,7 @@ var player :Player
 var speed = 200
 var crashVel : Vector2
 @export var attackReady = false
-@export var damage = 1
+@export var damage : float = 0.5
 
 @export var friction = 65
 
@@ -59,11 +59,8 @@ func _physics_process(delta):
 			velocity = crashVel
 			crashVel /= friction *delta
 		
-		col = move_and_collide(velocity*delta)
+		move_and_collide(velocity*delta)
 		
-		#if col != null and col.get_collider() == player :
-		#	crashVel = 2*player.realVelocity
-		#	takeDamage(crashVel.length()/100)
 
 func shootAt(pos :Vector2):
 	var newBullet = BULLET.instantiate()

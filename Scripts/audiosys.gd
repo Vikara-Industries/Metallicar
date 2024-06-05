@@ -1,10 +1,15 @@
 extends AudioStreamPlayer
 
-var songs = []
+const BANONANONANO = preload("res://audio/banonanonano.mp3")
+const PROJECT_3 = preload("res://audio/Project_3.mp3")
+const VEHICULAR_GODSLAUGHTER = preload("res://audio/vehicular_godslaughter.mp3")
+var songs = [PROJECT_3,VEHICULAR_GODSLAUGHTER,BANONANONANO]
 var songIter = 0
-func _ready():
-	songs.append(load("res://audio/vehicular_godslaughter.mp3"))
 
+func _ready():
+	set_stream(songs[songIter])
+	play()
+	
 func _on_finished():
 	
 	if songIter+1 < songs.size():
