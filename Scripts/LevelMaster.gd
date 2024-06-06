@@ -5,7 +5,10 @@ var player :Player
 
 var weaponList = [preload("res://Scenes/Prefabs/Shotgun.tscn").instantiate(),
 preload("res://Scenes/Prefabs/SawBlade.tscn").instantiate(),
-preload("res://Scenes/Prefabs/Missle.tscn").instantiate()]
+preload("res://Scenes/Prefabs/Missle.tscn").instantiate(),
+preload("res://Scenes/Prefabs/Machinegun.tscn").instantiate(),
+preload("res://Scenes/Prefabs/Mines.tscn").instantiate()]
+
 const HEALTH_PACK = preload("res://Scenes/Prefabs/healthPack.tscn")
 
 var levelTime : int #in seconds

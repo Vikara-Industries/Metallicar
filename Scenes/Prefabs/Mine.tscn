@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgaf55e1i2kxj"]
+
+[ext_resource type="Script" path="res://Scripts/mine.gd" id="1_i1i7e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ohhs"]
+radius = 22.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ejvv3"]
+
+[sub_resource type="Animation" id="Animation_g251i"]
+resource_name = "operate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D2:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yqs62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fytuf"]
+_data = {
+"RESET": SubResource("Animation_yqs62"),
+"operate": SubResource("Animation_g251i")
+}
+
+[sub_resource type="Curve" id="Curve_jp3ce"]
+min_value = 1.0
+max_value = 5.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 3.98901), 0.989009, 0.989009, 0, 0, Vector2(1, 4.91209), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_fiua2"]
+offsets = PackedFloat32Array(0, 0.980263)
+colors = PackedColorArray(1, 1, 1, 1, 0.0941176, 0, 0, 1)
+
+[node name="Mine" type="Area2D"]
+script = ExtResource("1_i1i7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3ohhs")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(17.5193, 17.5193)
+mesh = SubResource("SphereMesh_ejvv3")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-4.76837e-07, 4.76837e-07)
+scale = Vector2(5.75624, 5.75964)
+mesh = SubResource("SphereMesh_ejvv3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fytuf")
+}
+autoplay = "operate"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_jp3ce")
+color_ramp = SubResource("Gradient_fiua2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

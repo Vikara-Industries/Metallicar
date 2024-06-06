@@ -91,7 +91,7 @@ func can_add_weapon(weapon :Weapon):
 				return true
 			else:
 				return false
-	if weapons.size() <= MAX_WEAPONS:
+	if weapons.size() < MAX_WEAPONS:
 		return true
 	return false
 	
@@ -115,6 +115,12 @@ func add_weapon(weapon :Weapon):
 			front_right.add_child(weapon)
 		"missle":
 			top.add_child(weapon)
+			weapons.append(weapon)
+		"machinegun":
+			top.add_child(weapon)
+			weapons.append(weapon)
+		"mines":
+			back_middle.add_child(weapon)
 			weapons.append(weapon)
 
 func get_weapons():

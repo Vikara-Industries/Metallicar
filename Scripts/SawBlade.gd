@@ -8,6 +8,7 @@ func fire():
 	for body in damage_area.get_overlapping_bodies():
 		if body.is_in_group("Enemy"):
 			body.takeDamage(damage)
+			body.velocity = Vector2.ZERO
 
 func upgrade():
 	level += 1

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq714xn1xb3tt"]
+
+[ext_resource type="Script" path="res://Scripts/Mines.gd" id="1_fklui"]
+
+[node name="Mines" type="Node2D"]
+script = ExtResource("1_fklui")
+weapontype = "mines"
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
