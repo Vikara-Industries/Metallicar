@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmevk0e00c287"]
+[gd_scene load_steps=11 format=3 uid="uid://cmevk0e00c287"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ryucm"]
 [ext_resource type="Texture2D" uid="uid://dperpng8mm8ad" path="res://Art/Player.png" id="2_4ofuw"]
+[ext_resource type="Texture2D" uid="uid://b85httrmbjfyg" path="res://Art/Playerplayer_n.png" id="3_0xowq"]
+[ext_resource type="Texture2D" uid="uid://bf6so3ujpaqj2" path="res://Art/Playerplayer_s.png" id="4_uqfbx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ladg7"]
+diffuse_texture = ExtResource("2_4ofuw")
+normal_texture = ExtResource("3_0xowq")
+specular_texture = ExtResource("4_uqfbx")
+specular_color = Color(0.67451, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ynr"]
 size = Vector2(34, 18)
@@ -122,7 +130,7 @@ engine_power = 300
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
-texture = ExtResource("2_4ofuw")
+texture = SubResource("CanvasTexture_ladg7")
 offset = Vector2(0.5, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

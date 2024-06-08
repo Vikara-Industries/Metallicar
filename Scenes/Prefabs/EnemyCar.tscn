@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://db5b5vngmkqp4"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyCar.gd" id="1_a8osr"]
+[ext_resource type="Texture2D" uid="uid://dlgobvoto7wml" path="res://Art/EnemyCar1.png" id="2_6tmfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncgx7"]
+size = Vector2(24, 14)
+
+[node name="EnemyCar" type="CharacterBody2D" groups=["Enemy"]]
+texture_filter = 1
+script = ExtResource("1_a8osr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_6tmfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ncgx7")

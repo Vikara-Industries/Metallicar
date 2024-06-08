@@ -8,10 +8,12 @@ process_mode = 1
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 process_mode = 3
+layer = 5
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("1_ug1u8")]
 process_mode = 3
 visible = false
+z_index = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

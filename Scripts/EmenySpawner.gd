@@ -77,4 +77,17 @@ func spawnWave(wave: Dictionary):
 			TargetParent.add_child(newEnemy)
 			newEnemy.global_position = self.global_position - Vector2(iter,10)
 			iter += 1
-
+	if wave.has("Bomber2"):
+		for shooter in wave["Bomber2"]:
+			var newEnemy = bomber1.instantiate()
+			newEnemy.get_node("./Sprite2D").set_texture(load("res://Art/Bomber2.png"))
+			TargetParent.add_child(newEnemy)
+			newEnemy.global_position = self.global_position - Vector2(iter,10)
+			iter += 1
+	if wave.has("Bomber3"):
+		for shooter in wave["Bomber3"]:
+			var newEnemy = bomber1.instantiate()
+			newEnemy.get_node("./Sprite2D").set_texture(load("res://Art/Bomber3.png"))
+			TargetParent.add_child(newEnemy)
+			newEnemy.global_position = self.global_position - Vector2(iter,10)
+			iter += 1

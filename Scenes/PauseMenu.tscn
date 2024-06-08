@@ -1,8 +1,119 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhu71ls6cjqlt"]
+[gd_scene load_steps=6 format=3 uid="uid://bhu71ls6cjqlt"]
 
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="1_nk5pa"]
+[ext_resource type="Texture2D" uid="uid://76mxix552juq" path="res://Art/cloker.png" id="2_qhmsj"]
+
+[sub_resource type="Animation" id="Animation_yqy7a"]
+resource_name = "jumpscare"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_m0wo0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mox4h"]
+_data = {
+"RESET": SubResource("Animation_m0wo0"),
+"jumpscare": SubResource("Animation_yqy7a")
+}
 
 [node name="PauseMenu" type="Control"]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,14 +125,12 @@ script = ExtResource("1_nk5pa")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.035
-anchor_top = 0.031
-anchor_right = 0.974
-anchor_bottom = 0.949
-offset_left = -0.32
-offset_top = -2.088
-offset_right = -1.0481
-offset_bottom = 0.0479736
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayButton" type="Button" parent="Panel"]
 layout_mode = 1
@@ -30,10 +139,8 @@ anchor_left = 0.022
 anchor_top = 0.013
 anchor_right = 0.977
 anchor_bottom = 0.227
-offset_left = -4.782
 offset_top = 0.239
 offset_right = -0.137085
-offset_bottom = 1.48099
 text = "Play
 "
 
@@ -41,49 +148,74 @@ text = "Play
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.022
-anchor_top = 0.013
+anchor_top = 0.3
 anchor_right = 0.977
-anchor_bottom = 0.227
-offset_left = -4.782
-offset_top = 147.239
-offset_right = -0.137085
-offset_bottom = 148.481
+anchor_bottom = 0.5
 text = "Restart"
 
 [node name="MusicSlider" type="HSlider" parent="Panel"]
-layout_mode = 0
-offset_left = 146.0
-offset_top = 317.0
-offset_right = 1051.0
-offset_bottom = 363.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.6
+anchor_right = 0.95
+anchor_bottom = 0.6
 min_value = -30.0
 max_value = 0.0
 
 [node name="SfxSlider" type="HSlider" parent="Panel"]
-layout_mode = 0
-offset_left = 147.0
-offset_top = 394.0
-offset_right = 1052.0
-offset_bottom = 440.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.8
+anchor_right = 0.95
+anchor_bottom = 0.8
 min_value = -30.0
 max_value = 0.0
 
 [node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 326.0
-offset_right = 118.0
-offset_bottom = 363.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.6
+anchor_right = 0.1
+anchor_bottom = 0.6
 text = "music"
 
 [node name="Label2" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 404.0
-offset_right = 130.0
-offset_bottom = 443.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.8
+anchor_right = 0.1
+anchor_bottom = 0.8
 text = "sfx
 "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(306, 320)
+texture = ExtResource("2_qhmsj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mox4h")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(197, 207)
+emitting = false
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0, 0, 1, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(256, 209)
+emitting = false
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0, 0, 1, 1)
 
 [connection signal="button_up" from="Panel/PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="Panel/RestartButton" to="." method="_on_restart_button_button_up"]
